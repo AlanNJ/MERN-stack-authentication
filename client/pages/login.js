@@ -14,6 +14,7 @@ const login = (props) => {
 		e.preventDefault();
 		props.getUser(data);
 	};
+	if (props.user.user) router.push("/");
 
 	return (
 		<div>
