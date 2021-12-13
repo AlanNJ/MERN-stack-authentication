@@ -19,6 +19,8 @@ const RegisterUser = () => {
 		});
 		if (data) {
 			router.push("/login");
+		} else {
+			window.alert("Something Went Wrong");
 		}
 	};
 
