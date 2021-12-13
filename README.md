@@ -1,0 +1,59 @@
+
+# MERN Stack JWT Authentication
+
+
+A proof of concept app for demonstrating authentication of MERN app with JWT. 
+
+The app is made under the assumption that the rendering server and the API server are decoupled.
+
+It uses [this API](https://github.com/alannj/express-server-jwt) for authentication.
+
+![Demo](demo.gif?raw=true "Demo")
+
+## Idea:
+
+Server side rendered apps are awesome. They make a sweet spot between monolithic apps and single page apps powered by microservices. But they also add complexity to their creation. Keeping state on the server and the client in sync, routing on the client and the server, loading data before server rendering, etc. are some of the things that make our apps more complex. That is why frameworks such as Next.js exist, to solve most of those problems. However, things such as authentication are left to us. This is an attempt to implement the authentication based on JWT. The thing is that we can't store tokens in localStorage as we would do with SPA.
+
+The idea is to receive token from the server on the client, store it in cookies, and then whenever a page renders on the server, we would be able to access the token from the cookie.
+
+## How it works:
+#### The client:
+The user sends an auth request from the client. In the response, JWT is received, and stored in browser cookies and redux store. Then the user has access to the token from the client, and can use it to access protected routes.
+
+#### The server:
+When the user makes a page request, cookies are also sent along, so the server can read them. To read it, the user is using the `getInitialProps` lifecycle method, provided by Next.js. It gets an argument - the context object that contains some properties. You can read more about it [here](https://github.com/zeit/next.js/#fetching-data-and-component-lifecycle). On the `req` property, we can access `headers` property which contains the cookie with the token. An action creator is dispatched to save the token in the redux store, and the app now has access to the token again.
+
+
+
+## Usage:
+
+### Installation:
+
+Make sure you have latest version of Node and NPM installed.
+
+Also make sure you have the [API server](https://github.com/alan2207/express-server-jwt) running.
+
+```bash
+git clone 'link to the clone url'
+go inside client folder
+npm install
+```
+```bash
+git clone 'link to the clone url'
+go inside server folder
+npm install
+```
+
+### Starting the app:
+```bash
+# Run in dev mode:
+npm run dev
+
+# Run in production:
+npm run build
+npm start
+```
+#Create your own .env file inside the root server folder with the following environment variables of your own.
+`DATABASE -->URI of the project provided by the mongo db`
+`JWT_SECRET--> any random minimum of 15 letter variable with characters preferred`
+
