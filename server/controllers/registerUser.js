@@ -22,6 +22,7 @@ const registerUser = async (req, res) => {
 	} catch (err) {
 		res.json({
 			message: "error",
+			status:'none',
 		});
 	}
 };
