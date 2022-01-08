@@ -14,7 +14,7 @@ const registerUser = async (req, res) => {
 		const salt = await bcrypt.genSalt(12);
 		user.password = await bcrypt.hash(user.password, salt);
 		user.save();
-		// user.password = undefined;
+		user.password = undefined;
 		await res.json({
 			ok: "true",
 			user,
