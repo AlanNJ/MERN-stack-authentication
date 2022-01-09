@@ -16,11 +16,9 @@ const dashboard = (props) => {
 	const pos = [];
 	useEffect(() => {
 		props.getInitial();
-
-		//console.log(props.user.user.user._id);
 	}, []);
 
-	return <div></div>;
+	return <div>{props.user.user && props.user.user.name}</div>;
 };
 
 const mapStateToProps = (state) => {
