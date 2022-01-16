@@ -39,7 +39,7 @@ const RegisterUser = ()=>{
         if (data) {
             router.push("/login");
         } else {
-            window.alert("Something went wrong");
+            window.alert("Something Went Wrong");
         }
     };
     return(/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
