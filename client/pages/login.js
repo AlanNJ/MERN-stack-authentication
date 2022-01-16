@@ -11,7 +11,6 @@ const login = (props) => {
 	const data = { email, password };
 	const router = useRouter();
 	const loginUser = async (e) => {
-		e.preventDefault();
 		props.getUser(data);
 	};
 	if (props.user.user) router.push("/");

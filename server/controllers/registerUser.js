@@ -6,7 +6,10 @@ const registerUser = async (req, res) => {
 		const { email, name, phone, password } = req.body;
 		if (!email) res.status(400).send("email is required");
 		if (!name) res.status(400).send("name is required");
-		if (!password) res.status(400).send("password is required");
+		if (!password && password.length <= 8)
+			res
+				.status(400)
+				.send("password is required and must be of minimum 8 characters");
 		if (!phone) res.status(400).send("phone is required");
 		const exist = await User.findOne({ email });
 		if (exist) res.status(200).send("Email is already taken");
@@ -22,7 +25,7 @@ const registerUser = async (req, res) => {
 	} catch (err) {
 		res.json({
 			message: "error",
-			status:'none',
+			status: "none",
 		});
 	}
 };
